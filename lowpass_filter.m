@@ -1,0 +1,23 @@
+[audio_data,fs]=audioread('D:\tencent\SunshineSquare.wav');
+y=fft(audio_data);
+f=(0:length(audio_data)-1)*fs/length(audio_data);
+t=(0:length(audio_data)-1)/fs;
+figure(1);
+subplot(2,1,1);plot(t,audio_data);
+subplot(2,1,2);plot(abs(y));
+f1=max(fs);
+b1=[1 1i*-exp((17000/fs)*2*pi)];
+a1=1;
+data1=filter(b1,a1,audio_data);
+y1=fft(data1);
+figure(2);
+subplot(2,1,1);plot(t,data1);
+subplot(2,1,2);plot(abs(y1));
+b2=[1 1i*-exp(34000*pi)];
+a2=1;
+data2=filter(b2,a2,data1);
+y2=fft(data2);
+figure(3);
+subplot(2,1,1);plot(t,data2);
+subplot(2,1,2);plot(abs(y2));
+
